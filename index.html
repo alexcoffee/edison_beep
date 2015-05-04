@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Beeper</title>
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+    </head>
+
+    <body style="background-color: #1173C2;">
+        <h1 style="color: white; font-family: sans-serif">Beep!</h1>
+        <input type="duration" name="duration" id="duration" max="2000" min="1" value="1000"/>
+        <button name="beep" id="beep" value="beep">Beep</button>
+
+        <script>
+            var socket = io.connect(document.URL);
+
+            $("#beep").on("click", function () {
+                var dur = $('#duration').val();
+                socket.emit('beep', dur);
+            });
+
+        </script>
+    </body>
+</html>
+
